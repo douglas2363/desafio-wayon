@@ -30,20 +30,29 @@ public class AnagramGenerator {
             throw new IllegalArgumentException("Input string must contain only letters");
         }
 
-        // Caso base: uma única letra → retorno direto
+        // Caso base: quando a string tem apenas 1 caractere
         if (input.length() == 1) {
             List<String> base = new ArrayList<>();
             base.add(input);
             return base;
         }
 
-        // Caso recursivo
+        // Caso recursivo: gera anagramas para strings maiores
         List<String> anagrams = new ArrayList<>();
-        char firstChar = input.charAt(0);
-        String remainingChars = input.substring(1);
+        char firstChar = input.charAt(0); // Pega o primeiro caractere
+        String remainingChars = input.substring(1);// Pega o restante da string
 
+        // Gera anagramas recursivamente para os caracteres restantes
         for (String subAnagram : generateAnagrams(remainingChars)) {
+            // Insere o primeiro caractere em todas as posições possíveis
             for (int i = 0; i <= subAnagram.length(); i++) {
+                /*
+                 * Insere o primeiro caractere em todas as posições possíveis da substring
+                 * Exemplo: se subAnagram for "ab" e firstChar for 'c', as combinações serão:
+                 * - cab
+                 * - acb
+                 * - abc
+                 */
                 String anagram = subAnagram.substring(0, i) + firstChar + subAnagram.substring(i);
                 anagrams.add(anagram);
             }

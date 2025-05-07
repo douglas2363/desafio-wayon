@@ -13,3 +13,7 @@ R =  Bom pensando em um desacoplamento e olhando para um padrão de projeto, pod
 
 **Observação**
 Podemos ter uma limitação onde se a biblioteca muda frequentemente, o adaptador pode precisar de uma manutenção contínua.
+
+*** O exemplo de codigo está na aplicação e vou explicar basicamente o que foi feito, em cima da resposta supracitada. ***
+
+No caso implementei um cenário basico de envio de e-mail, onde se eu tenho uma biblioteca de terceiros (fictícia) chamada ThirdPartyEmailSender que envia os e-mails. Para manter o codigo desacoplado, eu teria que criar uma interface própria e um adaptador. Em resultado se eu trocar ThirdPartyEmailSender por outro provedor(adapter), eu só precisaria trocar o adaptador.

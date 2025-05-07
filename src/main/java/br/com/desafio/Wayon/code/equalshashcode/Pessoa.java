@@ -1,6 +1,4 @@
-package br.com.desafio.Wayon.code.anagram.equalshashcode;
-
-import java.util.Objects;
+package br.com.desafio.Wayon.code.equalshashcode;
 
 public class Pessoa {
     private String nome;

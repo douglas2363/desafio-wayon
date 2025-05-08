@@ -134,6 +134,76 @@ LEFT JOIN Orders o ON s.ID = o.salesperson_id
 GROUP BY s.ID, s.Name;
 
 
+7 - The customer has a system called XYZ and intends to start updates split into 3 phases. The requirements for the first phase are as follows:
+Enable new data entries in the system, which will serve as input for the second phase.
+Implement functionality to create, update, delete, and search plants.
+Plants should have the following attributes:
+Code: Numeric only, mandatory, and unique.
+Description: Alphanumeric, up to 10 characters, optional.
+Only admin users can delete plants.
+Ensure that the system prevents duplication of plant codes.
+Task:
+Based on the above information:
+Write a use case or user story for this scenario, ensuring that it clearly addresses the requirements.
+Highlight any business rules or assumptions relevant to the solution.
+Describe any validations or security measures you would implement in the system.
+Suggest how you would test this functionality, including examples of edge cases.
+
+
+** Observação **
+==> Implemente o codigo dentro da aplicação também como exemplo dentro do package plant.management <==
+
+ 1. História de Usuário
+
+Título: Gerenciamento de Plantas no Sistema XYZ
+Como administrador ou usuário do sistema
+Quero poder criar, atualizar, excluir (apenas admin) e pesquisar plantas
+Para que o sistema possa gerenciar essas entidades como base para as fases futuras
+
+1 - Critérios de Aceitação:
+
+=> Código da planta deve ser único, numérico e obrigatório.
+
+=> Descrição é opcional, com até 10 caracteres
+
+=> penas administradores podem excluir plantas
+
+=> Não permitir duplicação de códigos
+
+2 - Regras de Negócio e Validações
+
+=> Código é obrigatório, numérico e único
+
+=> Descrição é opcional, até 10 caracteres
+
+=> Apenas administradores podem excluir plantas
+
+=> Pesquisa deve permitir busca por código ou descrição
+
+3 -  Segurança
+
+=> A autenticação deve identificar se o usuário tem o papel de “ADMIN”
+
+=> Excluir planta só é permitido se user.hasRole("ADMIN")
+
+=> Validações feitas tanto no frontend (se aplicável) quanto no backend
+
+
+4 - Casos de Teste
+
+Cenário  ========================================== Descrição
+Código duplicado                                    Tentar criar duas plantas com o mesmo código
+Código ausente                                      Tentar criar uma planta sem informar código
+Código com letras                                   Enviar código alfanumérico
+Descrição maior que 10 caracteres                   Deve rejeitar
+Usuário comum tenta excluir                         Deve negar com erro 403
+Admin exclui com sucesso                            Deve permitir
+Pesquisa por código inexistente                     Deve retornar vazio
+Atualização válida                                  Deve persistir os dados 
+
+
+
+
 
 
 

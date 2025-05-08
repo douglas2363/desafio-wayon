@@ -34,4 +34,4 @@ R = Tenho trabalhado com Angular por 6 anos, onde minhas experiências sempre at
 *** Observação ***
 ==> Foi criando umma pequena aplicação em Angular para explicar como funciona  um recurso chave, e comunicação entre os componentes, além da construção do template(Perfumaria). Segue o link do github do projeto:
 
-() => https://github.com/douglas2363/desafio-wayon-angular
+() => https://github.com/douglas2363/desafio-wayon-angular/tree/master

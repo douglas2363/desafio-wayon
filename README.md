@@ -88,13 +88,15 @@ step("processStep")
 
 Com isso o tempo total da execução do processo é reduzido significativamente, especialmente em cenários com grande volume de dados. Cada thread processa um chunk de 100 itens de forma assíncrona, permitindo maior aproveitamento da CPU e melhor escalabilidade.
 
+Link da imagem -> ![image](https://github.com/user-attachments/assets/c7d85045-252e-45b5-a6ea-e251568863a0)
+
 6 - Given the tables above, write the SQL query that: 
 a. Returns the names of all Salesperson that don’t have any order with Samsonic. 
 b. Updates the names of Salesperson that have 2 or more orders. It’s necessary to add an ‘*’ in the end of the name. 
 c. Deletes all Ssalesperson that placed orders to the city of Jackson.
 d. The total sales amount for each Salesperson. If the salesperson hasn’t sold anything, show zero.
 
-Link da imagem -> ![image](https://github.com/user-attachments/assets/c7d85045-252e-45b5-a6ea-e251568863a0)
+
 
 
 a) 

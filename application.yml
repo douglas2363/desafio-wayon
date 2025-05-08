@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/exemplo_seguranca
+    username: app_user
+    password: senha_segura
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

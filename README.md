@@ -35,3 +35,18 @@ R = Tenho trabalhado com Angular por 6 anos, onde minhas experiências sempre at
 ==> Foi criando umma pequena aplicação em Angular para explicar como funciona  um recurso chave, e comunicação entre os componentes, além da construção do template(Perfumaria). Segue o link do github do projeto:
 
 () => https://github.com/douglas2363/desafio-wayon-angular/tree/master
+
+4- Discuss the techniques you use to prevent SQL injection attacks in web applications. Provide examples of code showing secure implementations, such as using parameterized queries or ORMs. Mention any additional measures you take to secure the database layer.
+
+R = Para previnir ataques de injeção de SQL em aplicações web, recomneda-se seguir estratégias que são fundamentais como o uso de consultas parametrizadas, ORMs(Object-Relational Mapping) e validação/escapamento de entrada do usuário. Além adotar também boas práticas de segurança na configuração da base de dados. Temos ORMs como próprio Hibernate em java, Sequelize(Node.js), que oferecem camadas de abstração que ajudam previnir injeções SQL, pois geram as consultas de forma segura. Exemplo em codigo : 
+
+Query query = session.createQuery("FROM Usuario WHERE email = :email");
+query.setParameter("email", email);
+Usuario usuario = (Usuario) query.uniqueResult();
+
+Podemos antes de passar os dados também, aplicar validações para garantir que os dados estejam no formato esperado no caso de email,  utilizando bibliotecas de validação como => Bean Validation, @Valid e etc. Fiz em codigo, esta no projeto, no package seguranca.orm
+
+
+
+
+

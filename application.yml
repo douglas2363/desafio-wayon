@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/exemplo_seguranca
-    username: app_user
-    password: senha_segura
+    url: jdbc:postgresql://localhost:5432/desafio_wayon
+    username: postgres
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: update

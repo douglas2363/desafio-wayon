@@ -68,6 +68,27 @@ Temos uma query a principal do sistema que assim, carrega todos os dados princip
 Tivemos uma logica de loop por exemplo paralelizada, onde reduziu de 10 para 3 minnutos.
 Todos os arquivos FTP enormes, foram comprimidos, onde o tempo de envio caiu de 10 para 2 minutos. Então esse seria um grande exemplo e um cenário, onde temos toda analise e ferramentas necessárias para uma otimização e estratégia para diagnosticar e aplicar a solução para gerir uma aplicação e processos com seguranaça , escalabilidade e disponibilidade.
 
+Em codigo citando so um exemplo podemos fazer uma melhoria de lógica de processamento, por exemplo: 
+
+Utiliza Spring Batch para dividir o processo em steps(Leitura, processamento, escrita), com possibilidades de: 
+
+Chunk processing(ex: chunk(100));
+Paralelismo com TaskExecutor, que nos permite processar múltiplos chunks simultaneamente.
+E o principal para falhas temos o Retry, e Skip para falhas temporárias:
+
+Agora cito um exemplo deste paralelismo:
+
+step("processStep")
+.chunk(100)
+.reader(itemReader())
+.processor(itemProcessor())
+.writer(itemWriter())
+.taskExecutor(new SimpleAsyncTaskExecutor())
+.throttleLimit(4) // até 4 threads paralelas
+
+Com isso o tempo total da execução do processo é reduzido significativamente, especialmente em cenários com grande volume de dados. Cada thread processa um chunk de 100 itens de forma assíncrona, permitindo maior aproveitamento da CPU e melhor escalabilidade.
+
+
 
 
 

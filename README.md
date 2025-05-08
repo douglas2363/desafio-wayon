@@ -46,6 +46,28 @@ Usuario usuario = (Usuario) query.uniqueResult();
 
 Podemos antes de passar os dados também, aplicar validações para garantir que os dados estejam no formato esperado no caso de email,  utilizando bibliotecas de validação como => Bean Validation, @Valid e etc. Fiz em codigo, esta no projeto, no package seguranca.orm
 
+5 - Describe the steps you would take to diagnose and improve the performance of a batch process that interacts with a database and an FTP server. Explain how you would identify bottlenecks, optimize database queries, improve logic execution, and enhance file transfer efficiency. Provide examples of tools or techniques you would use during the analysis. 
+
+R = Primeiramente é interessante você entender o fluxo do processo antes de tudo, para ter uma analise sólida de como começar por exemplo:
+
+-> Quais são as entradas e saídas do processo ? 
+-> Com que frequência ele roda ? 
+-> Qual o volume de dados processados?
+-> Onde ocorrem os maiores tempos de execução? 
+
+Então tendo essa analise e entendimento do fluxo, pode-se já ter o entendimento por onde começar... No caso temos que identificar os gargalos dentro de um fluxo de processo e aplicar técnicas e utilizar ferramentas. Vamos colocar  técnicas para ficar mais claro por exemplo temos :
+
+Logs com timestamps detalhados, adicionando marcações de inicio e fim para cada etapa que seira (Consulta, processamento, envio FTP)onde podemos ter uma ideia e medir os tempos reais. Temos que ter ideia que precisamos de monitoração então cabe inserirmos aqui um monitoramento de recursos, onde verifica a CPU, memória, disco e rede, durante uma execução de thread de processos por exemplo tendo em vista ferramentas como htop, iotop, ou o mais utilizado hoje no mercado por grande empresas Grafana, Prometheus, GrayLog e DataDog.
+Além temos que ter em mente quando se fala de consultas e banco, onde temos analise das depedências externas que precisamos dentro de uma aplicação, onde precisamos verificar o tempo de resposta de queris SQL, e de envio/recebimento de arquivos FTP.
+
+Então podemos citar varias coisas dentro desse contexto quando nos referimos um diagnostico de processos ou threads de processo onde temos varios maneiras  de otimizar e analisar olhando para otimização de consultas ao banco de dados, melhoria na logica de execução, teste e monitoramento contínuos.
+Um bom exemplo real que podemos colocar aqui seria:
+
+Vamos imaginar que  lote demore 40 minutos, então vamos analisar o por que esse tempo todo: 
+Temos uma query a principal do sistema que assim, carrega todos os dados principais da aplicação, o que sobrecarrega pq leva 20 minutos, então uma estratégia seria otimizar com novos índices, que resultaria em uma grande redução de tempo para 5 minutos.
+Tivemos uma logica de loop por exemplo paralelizada, onde reduziu de 10 para 3 minnutos.
+Todos os arquivos FTP enormes, foram comprimidos, onde o tempo de envio caiu de 10 para 2 minutos. Então esse seria um grande exemplo e um cenário, onde temos toda analise e ferramentas necessárias para uma otimização e estratégia para diagnosticar e aplicar a solução para gerir uma aplicação e processos com seguranaça , escalabilidade e disponibilidade.
+
 
 
 

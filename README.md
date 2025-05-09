@@ -3,7 +3,15 @@ Desafio para vaga desenvolvedor Java
 
 #Questions: 
 
-2 - Explain how you would use a design pattern to decouple your code from a third-party library that might be replaced in the future. Describe the advantages and limitations of your chosen approach, and provide a small code snippet illustrating its application.
+1 - Write a simple code to solve the following problem: Given a group of letters, print all existing anagram. For example: a,b,c} => abc; acb; bac; bca; cab; cba
+
+R = Esta na aplicação a parte deste codigo no package anagram, juntamente com classe de testes.
+
+2 - Describe a situation that you would override the method equals() from Object class
+
+R = O método equals() da classe Object compara referências de memória, ou seja, verifica se dois objetos são exatamente a mesma instância. Em muitos casos, isso não é suficiente, principalmente quando você quer comparar objetos com base em seus atributos (valores) e não na identidade. Eu coloquei este exemplo em codigo na aplicação também dentro do package (equalshascode).
+
+3 - Which design pattern would you use to protect your code from a third party library, which will likely to be replaced in a couple of years..
 
 R =  Bom pensando em um desacoplamento e olhando para um padrão de projeto, podemos colocar um exemplo como o Adapter neste caso, onde o adapter ele atua como uma camada intermediária entre seu codigo e a biblioteca externa. No caso você define uma interface própria, onde sua aplicação consome, e após implementa um adaptador que traduz as chamadas dessa interface para os métodos da biblioteca  - muito usado em (Arquiteura Hexagonal). Eu poderia citar as vantagens: 
 
@@ -18,7 +26,7 @@ Podemos ter uma limitação onde se a biblioteca muda frequentemente, o adaptado
 
 No caso implementei um cenário basico de envio de e-mail, onde se eu tenho uma biblioteca de terceiros (fictícia) chamada ThirdPartyEmailSender que envia os e-mails. Para manter o codigo desacoplado, eu teria que criar uma interface própria e um adaptador. Em resultado se eu trocar ThirdPartyEmailSender por outro provedor(adapter), eu só precisaria trocar o adaptador.
 
-3- Describe your experience with Angular, including its core features and use cases. Provide an example of a practical application where you used Angular and include a code snippet demonstrating a key feature, such as component communication, data binding, or service integration.
+4- Describe what you know about Angular and provide some code and applications of use examples.
 
 R = Tenho trabalhado com Angular por 6 anos, onde minhas experiências sempre atuei como desenvolvedor FullStack, atuando tanto na parte de backend quando front, trazendo uma bagagem na parte de front desde Angularjs ate Angular +15, e tenho bastante experiência também na parte de React e React Native(Mobile). Minha experiência inclui uso intensivo de recursos principais do Angular, como : 
 
@@ -36,7 +44,7 @@ R = Tenho trabalhado com Angular por 6 anos, onde minhas experiências sempre at
 
 () => https://github.com/douglas2363/desafio-wayon-angular/tree/master
 
-4- Discuss the techniques you use to prevent SQL injection attacks in web applications. Provide examples of code showing secure implementations, such as using parameterized queries or ORMs. Mention any additional measures you take to secure the database layer.
+5 -  In web development, how do you prevent SQL injection attacks?
 
 R = Para previnir ataques de injeção de SQL em aplicações web, recomneda-se seguir estratégias que são fundamentais como o uso de consultas parametrizadas, ORMs(Object-Relational Mapping) e validação/escapamento de entrada do usuário. Além adotar também boas práticas de segurança na configuração da base de dados. Temos ORMs como próprio Hibernate em java, Sequelize(Node.js), que oferecem camadas de abstração que ajudam previnir injeções SQL, pois geram as consultas de forma segura. Exemplo em codigo : 
 
@@ -46,7 +54,7 @@ Usuario usuario = (Usuario) query.uniqueResult();
 
 Podemos antes de passar os dados também, aplicar validações para garantir que os dados estejam no formato esperado no caso de email,  utilizando bibliotecas de validação como => Bean Validation, @Valid e etc. Fiz em codigo, esta no projeto, no package seguranca.orm
 
-5 - Describe the steps you would take to diagnose and improve the performance of a batch process that interacts with a database and an FTP server. Explain how you would identify bottlenecks, optimize database queries, improve logic execution, and enhance file transfer efficiency. Provide examples of tools or techniques you would use during the analysis. 
+6 - Let’s suppose you have a batch process that communicates with database, executes some internal logic and saves a file in a FTP server. User is complaining that this process is taking a long time to execute. How would you proceed to solve the problem?
 
 R = Primeiramente é interessante você entender o fluxo do processo antes de tudo, para ter uma analise sólida de como começar por exemplo:
 
@@ -92,11 +100,11 @@ Com isso o tempo total da execução do processo é reduzido significativamente,
 
 ![image](https://github.com/user-attachments/assets/c7d85045-252e-45b5-a6ea-e251568863a0)
 
-6 - Given the tables above, write the SQL query that: 
-a. Returns the names of all Salesperson that don’t have any order with Samsonic. 
-b. Updates the names of Salesperson that have 2 or more orders. It’s necessary to add an ‘*’ in the end of the name. 
-c. Deletes all Ssalesperson that placed orders to the city of Jackson.
-d. The total sales amount for each Salesperson. If the salesperson hasn’t sold anything, show zero.
+7  - Given the tables above, write the SQL query that:
+a. Returns the names of all Salesperson that don’t have any order with Samsonic.
+b. Updates the names of Salesperson that have 2 or more orders. It’s necessary to add an ‘*’ in the end of the name
+c. Deletes all Salesperson that placed orders to the city of Jackson.
+d. TThe total sales amount for each Salesperson. If the salesperson hasn’t sold anything, show zero.
 
 a) 
 SELECT s.Name
@@ -134,20 +142,18 @@ LEFT JOIN Orders o ON s.ID = o.salesperson_id
 GROUP BY s.ID, s.Name;
 
 
-7 - The customer has a system called XYZ and intends to start updates split into 3 phases. The requirements for the first phase are as follows:
-Enable new data entries in the system, which will serve as input for the second phase.
-Implement functionality to create, update, delete, and search plants.
-Plants should have the following attributes:
-Code: Numeric only, mandatory, and unique.
-Description: Alphanumeric, up to 10 characters, optional.
-Only admin users can delete plants.
-Ensure that the system prevents duplication of plant codes.
-Task:
-Based on the above information:
-Write a use case or user story for this scenario, ensuring that it clearly addresses the requirements.
-Highlight any business rules or assumptions relevant to the solution.
-Describe any validations or security measures you would implement in the system.
-Suggest how you would test this functionality, including examples of edge cases.
+8  - The customer has a system called XYZ and he wants to start some updates that will be split into 3 phases. The requirements for the first phase are the following:
+I want to start new data entries in the system (new information that will be used in the 2nd phase)
+•
+I want to include, update, delete and search plants
+•
+Plants can contain code (only number) and description (10 digits)
+•
+Only code is mandatory;
+•
+No plant can have the same code;
+•
+Only admin users can delete plants;
 
 
 ** Observação **
@@ -191,16 +197,73 @@ Para que o sistema possa gerenciar essas entidades como base para as fases futur
 
 4 - Casos de Teste
 
-Cenário  ========================================== Descrição
-Código duplicado                                    Tentar criar duas plantas com o mesmo código
-Código ausente                                      Tentar criar uma planta sem informar código
-Código com letras                                   Enviar código alfanumérico
-Descrição maior que 10 caracteres                   Deve rejeitar
-Usuário comum tenta excluir                         Deve negar com erro 403
-Admin exclui com sucesso                            Deve permitir
-Pesquisa por código inexistente                     Deve retornar vazio
-Atualização válida                                  Deve persistir os dados 
+![image](https://github.com/user-attachments/assets/f62742f2-3f55-4264-8ae2-883e0084a940)
 
+
+
+9  - Read the following description of a system functionality:
+User Registration
+-
+Screen where you can insert, delete or update user information;
+-
+User has properties “name”, “email”, “address” and “phone”. Only the first two are mandatory;
+-
+No user can have the same email;
+-
+Only admin users can delete other users;
+DS 1.1
+Describe which tests you would do to guarantee that everything is working correctly. (For example: insert user with every property filled)
+
+R = Testes de Inserção de Usuário
+
+Inserir usuário com todos os campos preenchidos corretamente
+ ->  Esperado: Usuário cadastrado com sucesso.
+
+Inserir usuário apenas com nome e email (campos obrigatórios)
+ -> Esperado: Usuário cadastrado com sucesso.
+
+==> Tentar inserir usuário sem nome
+ -> Esperado: Erro de validação ("Nome é obrigatório").
+
+Tentar inserir usuário sem email
+ ->  Esperado: Erro de validação ("Email é obrigatório").
+
+Tentar inserir usuário com email já existente no sistema
+ ->  Esperado: Erro informando "Email já cadastrado".
+
+==> Testes de Atualização de Usuário
+Atualizar nome, endereço ou telefone de um usuário existente
+ -> Esperado: Dados atualizados corretamente.
+
+ ==> Testes de Atualização de Usuário
+ -> Atualizar nome, endereço ou telefone de um usuário existente
+ -> Esperado: Dados atualizados corretamente.
+
+==> Testes de Atualização de Usuário
+Atualizar nome, endereço ou telefone de um usuário existente
+->  Esperado: Dados atualizados corretamente.
+Atualizar o email para um que já existe em outro usuário
+-> Esperado: Erro de duplicidade de email.
+
+Testes de Exclusão de Usuário
+ -> Usuário administrador exclui outro usuário
+ -> Esperado: Usuário removido com sucesso.
+
+Usuário comum tenta excluir outro usuário
+-> Esperado: Erro de permissão ("Apenas administradores podem excluir usuários").
+
+Usuário tenta excluir a si mesmo (dependendo da regra de negócio)
+-> Esperado: Deve permitir ou negar, conforme definido no sistema.
+
+Testes de Permissões e Restrições
+ -> Verificar se somente usuários autenticados conseguem acessar a tela de cadastro
+ -> Esperado: Tela bloqueada para não autenticados.
+
+-> Verificar se botões de exclusão aparecem apenas para administradores
+-> Esperado: Usuários comuns não visualizam botão de deletar.
+
+*** Obervação *** 
+===> Os Exemplos de teste unitário eu coloquei dentro da aplicação onde montei um pacote para ele (cadastro.usuario) e a parte de teste unitários dele <===
 
 
 

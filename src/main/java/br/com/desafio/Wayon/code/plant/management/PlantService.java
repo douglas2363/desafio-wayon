@@ -5,11 +5,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class PlantService {
 
     @Autowired
@@ -57,5 +59,12 @@ public class PlantService {
                 .filter(p -> p.getId().toString().contains(term) ||
                         (p.getDescription() != null && p.getDescription().contains(term)))
                 .collect(Collectors.toList());
+    }
+
+    public void deletePlant(String number) {
+        Plant plant = repository.findById(Long.valueOf(number))
+                .orElseThrow(() -> new RuntimeException("Planta não encontrada"));
+
+        repository.delete(plant);
     }
 }

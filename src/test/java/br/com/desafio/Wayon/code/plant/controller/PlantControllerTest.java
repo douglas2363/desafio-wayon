@@ -2,20 +2,17 @@
 //
 //import br.com.desafio.Wayon.code.plant.management.Plant;
 //import br.com.desafio.Wayon.code.plant.management.PlantController;
+//import br.com.desafio.Wayon.code.plant.management.PlantDTO;
 //import br.com.desafio.Wayon.code.plant.management.PlantService;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.mockito.Mock;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-//import org.springframework.context.annotation.Import;
 //import org.springframework.http.MediaType;
 //import org.springframework.security.test.context.support.WithMockUser;
 //import org.springframework.test.web.servlet.MockMvc;
-//
 //import java.util.List;
-//
-//import static jdk.jfr.internal.jfc.model.Constraint.any;
 //import static org.mockito.Mockito.*;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -42,7 +39,7 @@
 //
 //    @Test
 //    public void testCreatePlant_DuplicateCode() throws Exception {
-//        when(plantService.createPlant(any(Plant.class)))
+//        when(plantService.creatPlant(any(Plant.class)))
 //                .thenThrow(new PlantAlreadyExistsException("Planta já existe"));
 //
 //        mockMvc.perform(post("/plants")
@@ -50,6 +47,10 @@
 //                        .content("{\"code\": \"123\", \"description\": \"A beautiful flower\"}"))
 //                .andExpect(status().isConflict())
 //                .andExpect(content().string("Planta já existe"));
+//    }
+//
+//    private PlantDTO any(Class<Plant> plantClass) {
+//        return null;
 //    }
 //
 //    @Test
@@ -111,7 +112,7 @@
 //    public void testUpdatePlant_Valid() throws Exception {
 //        String newDescription = "Updated beautiful flower";
 //        Plant updatedPlant = new Plant("123", newDescription);
-//        when(plantService.updatePlant(eq("123"), any(Plant.class))).thenReturn(updatedPlant);
+//        when(plantService.updatePlant(Long.valueOf(eq("123")), any(Plant.class))).thenReturn(updatedPlant);
 //
 //        mockMvc.perform(put("/plants/{code}", "123")
 //                        .contentType(MediaType.APPLICATION_JSON)

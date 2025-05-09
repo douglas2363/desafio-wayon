@@ -14,6 +14,16 @@ public class Plant {
     @Size(max =  10)
     private String description;
 
+    public Plant(String number, String aBeautifulFlower) {
+        this.code = Long.valueOf(number);
+        this.description = aBeautifulFlower;
+    }
+
+    public Plant() {
+        // Default constructor
+
+    }
+
     public Long getId() {
         return code;
     }

@@ -36,6 +36,8 @@ public class CodeApplication {
 		Pessoa p1 =  new Pessoa("João", "123456789");
 		Pessoa p2 =  new Pessoa("Maria", "123456789");
 
+
+
 		System.out.println(p1.equals(p2)); // true, pois os CPFs são iguais
 
 		Set<Pessoa> pessoas = new HashSet<>();
